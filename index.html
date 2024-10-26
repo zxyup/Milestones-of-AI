@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 发展里程碑时间线</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>筛选类别</h2>
+            <button data-category="cv" class="filter-btn">计算机视觉</button>
+            <button data-category="nlp" class="filter-btn">自然语言处理</button>
+            <button data-category="rl" class="filter-btn">强化学习</button>
+            <button data-category="ddpm" class="filter-btn">扩散模型</button>
+            <button data-category="pe" class="filter-btn">提示词工程</button>
+        </div>
+        <div class="timeline">
+            <h1>AI 发展里程碑时间线</h1>
+            <ul id="milestone-list">
+                <!-- 动态加载时间线 -->
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        const milestoneList = document.getElementById('milestone-list');
+        const buttons = document.querySelectorAll('.filter-btn');
+        let selectedCategories = [];
+
+        function loadMilestones() {
+            fetch('milestones.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 按年份排序
+                    data.sort((a, b) => a.year - b.year);
+
+                    // 清空现有的时间线列表
+                    milestoneList.innerHTML = '';
+
+                    // 根据选中的类别过滤数据
+                    data.forEach(milestone => {
+                        if (selectedCategories.length === 0 || selectedCategories.some(cat => milestone.category.includes(cat))) {
+                            const li = document.createElement('li');
+                            li.classList.add('milestone-item');
+                            li.innerHTML = `
+                                <div class="timeline-content">
+                                    <div class="timeline-year">${milestone.year}</div>
+                                    <div class="timeline-details">
+                                        <h3>${milestone.title}</h3>
+                                        <p>${milestone.description}</p>
+                                        <p><strong>论文名称:</strong> ${milestone.paperTitle}</p>
+                                        <p><strong>作者:</strong> ${milestone.authors.join(', ')}</p>
+                                        <p><a href="${milestone.link}" target="_blank" class="paper-link">阅读论文</a></p>
+                                    </div>
+                                </div>`;
+                            milestoneList.appendChild(li);
+                        }
+                    });
+                });
+        }
+
+        // 按钮点击事件，支持多选
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const category = e.target.getAttribute('data-category');
+
+                // 如果当前类别已经被选中，取消选中；否则，添加到选中的类别数组中
+                if (selectedCategories.includes(category)) {
+                    selectedCategories = selectedCategories.filter(cat => cat !== category);
+                    e.target.classList.remove('active');
+                } else {
+                    selectedCategories.push(category);
+                    e.target.classList.add('active');
+                }
+
+                // 重新加载里程碑数据
+                loadMilestones();
+            });
+        });
+
+        // 初次加载所有里程碑
+        loadMilestones();
+    </script>
+</body>
+</html>

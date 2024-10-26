@@ -1,0 +1,38 @@
+[
+    {
+        "year": 2012,
+        "title": "AlexNet",
+        "category": ["cv"],
+        "description": "深度卷积神经网络在ImageNet挑战中取得突破性成果。",
+        "paperTitle": "ImageNet Classification with Deep Convolutional Neural Networks",
+        "authors": ["Alex Krizhevsky", "Ilya Sutskever", "Geoffrey Hinton"],
+        "link": "https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks"
+    },
+    {
+        "year": 2014,
+        "title": "GANs",
+        "category": ["cv", "nlp"],
+        "description": "生成对抗网络为生成模型带来了新的可能性。",
+        "paperTitle": "Generative Adversarial Networks",
+        "authors": ["Ian Goodfellow", "Jean Pouget-Abadie", "Mehdi Mirza", "Bing Xu", "David Warde-Farley", "Sherjil Ozair", "Aaron Courville", "Yoshua Bengio"],
+        "link": "https://arxiv.org/abs/1406.2661"
+    },
+    {
+        "year": 2018,
+        "title": "BERT",
+        "category": ["nlp"],
+        "description": "BERT引入双向编码器预训练，大幅提高自然语言处理性能。",
+        "paperTitle": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "authors": ["Jacob Devlin", "Ming-Wei Chang", "Kenton Lee", "Kristina Toutanova"],
+        "link": "https://arxiv.org/abs/1810.04805"
+    },
+    {
+        "year": 2016,
+        "title": "AlphaGo",
+        "category": ["rl", "cv"],
+        "description": "AlphaGo击败围棋冠军李世石，成为AI的重大里程碑。",
+        "paperTitle": "Mastering the game of Go with deep neural networks and tree search",
+        "authors": ["David Silver", "Aja Huang"],
+        "link": "https://arxiv.org/abs/1810.04805"
+    }
+]
